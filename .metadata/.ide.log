@@ -592,3 +592,98 @@
 2020-04-15 18:44:47,643 [INFO] ProjectBuilder:2894 - Time for Generating toolchain IDE Files: 3837mS.
 2020-04-15 18:44:47,645 [INFO] ProjectBuilder:1878 - Time for Copy CMSIS : 1mS.
 2020-04-15 18:44:47,674 [INFO] ProjectBuilder:1878 - Time for Copy CMSIS : 0mS.
+2020-04-15 19:33:34,592 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:34,594 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:34,594 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:34,595 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:34,596 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:34,597 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:34,597 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:34,598 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:34,599 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:34,600 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:34,600 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:34,601 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:34,602 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:34,603 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:34,603 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:34,604 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:34,605 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:34,605 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:34,606 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:34,606 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:34,814 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:38,449 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:38,451 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:38,451 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:38,453 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:38,454 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:38,455 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:38,455 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:38,457 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:38,458 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:38,459 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:38,459 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:38,461 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:38,461 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:38,462 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:38,463 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:38,463 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:38,464 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:38,464 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:38,465 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:38,465 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:38,602 [INFO] ADCParametersView:101 -                Rank 1 : false
+2020-04-15 19:33:44,195 [INFO] I2cTimingTraitement:320 - 0x10909CEC
+2020-04-15 19:33:44,509 [INFO] I2cTimingTraitement:320 - 0x10909CEC
+2020-04-15 19:34:23,714 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 479456496 Bytes (1018167296)
+2020-04-15 19:34:25,265 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 492565736 Bytes (1018167296)
+2020-04-15 19:34:25,638 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 569634032 Bytes (1018167296)
+2020-04-15 19:34:26,061 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: SYS
+2020-04-15 19:34:26,061 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: ADC
+2020-04-15 19:34:26,062 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: RCC
+2020-04-15 19:34:26,062 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: I2C
+2020-04-15 19:34:26,062 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: NVIC
+2020-04-15 19:34:26,062 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: USART
+2020-04-15 19:34:26,063 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: GPIO
+2020-04-15 19:34:26,065 [INFO] CodeGenerator:603 - code generatio: config db path: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.0.202002181639\\db\
+2020-04-15 19:34:26,440 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Maroine Trabelsi\Desktop\Sterowniki\temp_humidity\MXTmpFiles\license.tmp_save
+2020-04-15 19:34:26,593 [INFO] CodeEngine:206 - Generated code: C:\Users\Maroine Trabelsi\Desktop\Sterowniki\temp_humidity\MXTmpFiles\license.tmp
+2020-04-15 19:34:26,680 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Maroine Trabelsi\Desktop\Sterowniki\temp_humidity\MXTmpFiles\gpio.tmp_save
+2020-04-15 19:34:26,862 [INFO] CodeEngine:206 - Generated code: C:\Users\Maroine Trabelsi\Desktop\Sterowniki\temp_humidity\MXTmpFiles\gpio.tmp
+2020-04-15 19:34:26,887 [ERROR] IPConfigManager:1272 - ERROR: the RefConfig ADC_EnableInternalRegulator is not available in your config.xml file
+2020-04-15 19:34:26,889 [ERROR] IPConfigManager:1272 - ERROR: the RefConfig ADC_InternalChannelConfig is not available in your config.xml file
+2020-04-15 19:34:26,985 [ERROR] IPConfigManager:1272 - ERROR: the RefConfig I2CEnableFastModePlus is not available in your config.xml file
+2020-04-15 19:34:27,239 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2020-04-15 19:34:27,241 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for ADC
+2020-04-15 19:34:27,243 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2020-04-15 19:34:27,246 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2020-04-15 19:34:27,248 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for I2C
+2020-04-15 19:34:27,249 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2020-04-15 19:34:27,253 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2020-04-15 19:34:27,255 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for USART
+2020-04-15 19:34:27,256 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2020-04-15 19:34:27,260 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for NVIC
+2020-04-15 19:34:27,261 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2020-04-15 19:34:27,277 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Maroine Trabelsi\Desktop\Sterowniki\temp_humidity\Core\Src\stm32l4xx_it.c_save
+2020-04-15 19:34:27,518 [INFO] CodeEngine:206 - Generated code: C:\Users\Maroine Trabelsi\Desktop\Sterowniki\temp_humidity\Core\Src\stm32l4xx_it.c
+2020-04-15 19:34:27,541 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Maroine Trabelsi\Desktop\Sterowniki\temp_humidity\Core\Inc\stm32l4xx_it.h_save
+2020-04-15 19:34:27,833 [INFO] CodeEngine:206 - Generated code: C:\Users\Maroine Trabelsi\Desktop\Sterowniki\temp_humidity\Core\Inc\stm32l4xx_it.h
+2020-04-15 19:34:27,857 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Maroine Trabelsi\Desktop\Sterowniki\temp_humidity\Core\Src\stm32l4xx_hal_msp.c_save
+2020-04-15 19:34:28,147 [INFO] CodeEngine:206 - Generated code: C:\Users\Maroine Trabelsi\Desktop\Sterowniki\temp_humidity\Core\Src\stm32l4xx_hal_msp.c
+2020-04-15 19:34:28,162 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Maroine Trabelsi\Desktop\Sterowniki\temp_humidity\MXTmpFiles\system.tmp_save
+2020-04-15 19:34:28,336 [INFO] CodeEngine:206 - Generated code: C:\Users\Maroine Trabelsi\Desktop\Sterowniki\temp_humidity\MXTmpFiles\system.tmp
+2020-04-15 19:34:28,353 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Maroine Trabelsi\Desktop\Sterowniki\temp_humidity\Core\Inc\stm32l4xx_hal_conf.h_save
+2020-04-15 19:34:28,546 [INFO] CodeEngine:206 - Generated code: C:\Users\Maroine Trabelsi\Desktop\Sterowniki\temp_humidity\Core\Inc\stm32l4xx_hal_conf.h
+2020-04-15 19:34:28,588 [WARN] IPConfigManager:2701 - IP not found : gpio
+2020-04-15 19:34:28,591 [WARN] CodeGenerator:2649 - IP not found : gpio
+2020-04-15 19:34:28,603 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Maroine Trabelsi\Desktop\Sterowniki\temp_humidity\Core\Inc\main.h_save
+2020-04-15 19:34:28,792 [INFO] CodeEngine:206 - Generated code: C:\Users\Maroine Trabelsi\Desktop\Sterowniki\temp_humidity\Core\Inc\main.h
+2020-04-15 19:34:28,813 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Maroine Trabelsi\Desktop\Sterowniki\temp_humidity\Core\Src\main.c_save
+2020-04-15 19:34:29,150 [INFO] CodeEngine:206 - Generated code: C:\Users\Maroine Trabelsi\Desktop\Sterowniki\temp_humidity\Core\Src\main.c
+2020-04-15 19:34:30,130 [INFO] ProjectBuilder:2002 - Time for Copy HAL[1] : 298mS.
+2020-04-15 19:34:30,136 [INFO] ProjectBuilder:2727 - Project Generator version: 3.7.1
+2020-04-15 19:34:30,426 [INFO] ConfigFileManager:1066 - The Die is : DIE415
+2020-04-15 19:34:34,085 [INFO] ProjectBuilder:2894 - Time for Generating toolchain IDE Files: 3949mS.
+2020-04-15 19:34:34,087 [INFO] ProjectBuilder:1878 - Time for Copy CMSIS : 2mS.
+2020-04-15 19:34:34,096 [INFO] ProjectBuilder:1878 - Time for Copy CMSIS : 0mS.

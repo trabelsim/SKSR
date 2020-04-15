@@ -41,7 +41,7 @@ all: temp_humidity.elf secondary-outputs
 
 # Tool invocations
 temp_humidity.elf: $(OBJS) $(USER_OBJS) C:\Users\Maroine\ Trabelsi\Desktop\Sterowniki\temp_humidity\STM32L476RGTX_FLASH.ld
-	arm-none-eabi-gcc -o "temp_humidity.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Maroine Trabelsi\Desktop\Sterowniki\temp_humidity\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="temp_humidity.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-gcc -o "temp_humidity.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Maroine Trabelsi\Desktop\Sterowniki\temp_humidity\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="temp_humidity.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

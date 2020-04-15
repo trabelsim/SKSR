@@ -27,6 +27,7 @@
 #include "stm32l4xx_hal_rcc.h"
 #include <string.h> // for sprintf
 #include <stdio.h>
+#include "bmp280.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -44,11 +45,18 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-ADC_HandleTypeDef hadc1; // ADC1 Channel 5
+ADC_HandleTypeDef hadc1;
+
+I2C_HandleTypeDef hi2c1;
 
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
+
+// Declare variable for BMP280 usage
+BMP280_HandleTypedef bmp280;
+
+float pressure, temperature, humidity;
 
 /* USER CODE END PV */
 
@@ -57,6 +65,7 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
 static void MX_ADC1_Init(void);
+static void MX_I2C1_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -80,6 +89,9 @@ int main(void)
 	// humidity format used to format in a proper way the output
 	// Output should be from 0% to 100%. Similar to map function for arduino.
 	uint16_t humidity_format;
+
+	// i2c - bmp280 message box
+	char data_i2c[50];
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -102,7 +114,41 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
   MX_ADC1_Init();
+  MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
+
+
+  // Start bmp initialization with default parameters provided by library
+  bmp280_init_default_params(&bmp280.params);
+  // Get I2C address of BMP280 slave
+  bmp280.addr = BMP280_I2C_ADDRESS_0;
+  // Provide the I2C address to the bmp280 struct
+  bmp280.i2c = &hi2c1;
+
+
+  /*
+   * 			CHECK BMP280 CONNECTION
+   *
+   *
+   */
+  while(!bmp280_init(&bmp280, &bmp280.params)){
+	  sprintf( data_i2c, "BMP280 initialization failed\r\n" );
+	  HAL_UART_Transmit(&huart2, (uint8_t*)data_i2c , strlen(data_i2c), HAL_MAX_DELAY);
+	  HAL_Delay(2000);
+  }
+
+  // Check if I2C has been found
+  // 0XED is the address for initialize the communication - start
+  if ( (HAL_I2C_IsDeviceReady(&hi2c1,0xED, 2,10)) == HAL_OK){
+    	HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_5);
+    	sprintf( data_i2c, "BMP280 initialized correctly\r\n" );
+    	HAL_UART_Transmit(&huart2, (uint8_t*)data_i2c , strlen(data_i2c), HAL_MAX_DELAY);
+    	HAL_Delay(2000);
+
+    }
+
+
+
 
   /* USER CODE END 2 */
 
@@ -110,11 +156,23 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+
+
+	  /*
+	   * 		CHECK HUMIDITY SENSOR CONNECTION
+	   */
 	  //Start adc for &hadc1
 	  HAL_ADC_Start(&hadc1);
 
 	  // Controller start to poll the ADC device
 	  HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY);
+
+	  while (!bmp280_read_float(&bmp280, &temperature, &pressure, &humidity)) {
+	  	  	sprintf(data_i2c,"BMP280 reading failed\n");
+	  	  	HAL_UART_Transmit(&huart2, (uint8_t *)data_i2c, strlen(data_i2c), HAL_MAX_DELAY);
+	  	  	HAL_Delay(2000);
+	  	  	}
+
 
 	  // Get the value of ADC and store it in humidity line variable
 	  humidity_line = HAL_ADC_GetValue(&hadc1);
@@ -123,6 +181,10 @@ int main(void)
 
 	  // Transmit the humidity_msg through &huart2
 	  HAL_UART_Transmit(&huart2, (uint8_t*)humidity_msg, strlen(humidity_msg), HAL_MAX_DELAY);
+
+
+	  sprintf(data_i2c,"Pressure: %.2f Pa, Temperature: %.2f C\r\n",pressure, temperature);
+	  HAL_UART_Transmit(&huart2, (uint8_t *)data_i2c, strlen(data_i2c), HAL_MAX_DELAY);
 
 	  HAL_Delay(100);
 
@@ -173,8 +235,10 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART2|RCC_PERIPHCLK_ADC;
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART2|RCC_PERIPHCLK_I2C1
+                              |RCC_PERIPHCLK_ADC;
   PeriphClkInit.Usart2ClockSelection = RCC_USART2CLKSOURCE_PCLK1;
+  PeriphClkInit.I2c1ClockSelection = RCC_I2C1CLKSOURCE_PCLK1;
   PeriphClkInit.AdcClockSelection = RCC_ADCCLKSOURCE_PLLSAI1;
   PeriphClkInit.PLLSAI1.PLLSAI1Source = RCC_PLLSOURCE_HSI;
   PeriphClkInit.PLLSAI1.PLLSAI1M = 1;
@@ -257,6 +321,52 @@ static void MX_ADC1_Init(void)
   /* USER CODE BEGIN ADC1_Init 2 */
 
   /* USER CODE END ADC1_Init 2 */
+
+}
+
+/**
+  * @brief I2C1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_I2C1_Init(void)
+{
+
+  /* USER CODE BEGIN I2C1_Init 0 */
+
+  /* USER CODE END I2C1_Init 0 */
+
+  /* USER CODE BEGIN I2C1_Init 1 */
+
+  /* USER CODE END I2C1_Init 1 */
+  hi2c1.Instance = I2C1;
+  hi2c1.Init.Timing = 0x10909CEC;
+  hi2c1.Init.OwnAddress1 = 0;
+  hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+  hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+  hi2c1.Init.OwnAddress2 = 0;
+  hi2c1.Init.OwnAddress2Masks = I2C_OA2_NOMASK;
+  hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+  hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+  if (HAL_I2C_Init(&hi2c1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /** Configure Analogue filter 
+  */
+  if (HAL_I2CEx_ConfigAnalogFilter(&hi2c1, I2C_ANALOGFILTER_ENABLE) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /** Configure Digital filter 
+  */
+  if (HAL_I2CEx_ConfigDigitalFilter(&hi2c1, 0) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN I2C1_Init 2 */
+
+  /* USER CODE END I2C1_Init 2 */
 
 }
 
