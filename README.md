@@ -3,8 +3,8 @@ Actual results
 ![Alt text](wyniki_formatowane.png?raw=true "Formatted Output")
 
 Physical view
-![Alt text](physical.png?raw=true "Layer")
-![Alt text](lcd_output.png?raw=true "LCD Output")
+![Alt text](physical.jpg?raw=true "Layer")
+![Alt text](lcd_output.jpg?raw=true "LCD Output")
 
 
 Initial results
