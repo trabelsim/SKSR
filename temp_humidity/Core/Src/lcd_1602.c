@@ -32,12 +32,12 @@ void lcd_data(char c){
 
 void lcd_init(void){
 	//bl(1);
-	lcd_send(0,0x33);
-  lcd_send(0,0x32);
-  lcd_send(0,0x28);
-  lcd_send(0,0x0C);
-  lcd_send(0,0x06);
-  lcd_send(0,0x01);
+	lcd_send(0,0x33); // 0011 0011
+  lcd_send(0,0x32);	  // 0011 0010
+  lcd_send(0,0x28);	  // 0010 1000
+  lcd_send(0,0x0C);	  // 0000 1100
+  lcd_send(0,0x06);   // 0000 0110
+  lcd_send(0,0x01);   // 0000 0001	-> Clear the display
 	HAL_Delay(2);
 }
 

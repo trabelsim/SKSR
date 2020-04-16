@@ -1,10 +1,10 @@
-20:02:16 **** Incremental Build of configuration Debug for project temp_humidity ****
+20:24:24 **** Incremental Build of configuration Debug for project temp_humidity ****
 make -j4 all 
 arm-none-eabi-size   temp_humidity.elf 
    text	   data	    bss	    dec	    hex	filename
-  43436	    484	   1956	  45876	   b334	temp_humidity.elf
+  44212	    484	   1956	  46652	   b63c	temp_humidity.elf
 Finished building: default.size.stdout
  
 
-20:02:19 Build Finished. 0 errors, 0 warnings. (took 3s.79ms)
+20:24:26 Build Finished. 0 errors, 0 warnings. (took 2s.524ms)
 

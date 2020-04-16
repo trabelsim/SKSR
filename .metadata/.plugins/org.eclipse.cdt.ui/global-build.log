@@ -779,3 +779,87 @@ arm-none-eabi-size   temp_humidity.elf
   43436	    484	   1956	  45876	   b334	temp_humidity.elf
 Finished building: default.size.stdout
  
+20:19:50 **** Build of configuration Debug for project temp_humidity ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/lcd_1602.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32L476xx -DDEBUG -c -I../Drivers/CMSIS/Include -I../Core/Inc -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/lcd_1602.d" -MT"Core/Src/lcd_1602.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/lcd_1602.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32L476xx -DDEBUG -c -I../Drivers/CMSIS/Include -I../Core/Inc -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+In file included from ../Core/Src/main.c:33:0:
+../Core/Inc/lcd_1602.h:16:13: warning: 'lcd_send_4bit' declared 'static' but never defined [-Wunused-function]
+ static void lcd_send_4bit(uint8_t data);
+             ^~~~~~~~~~~~~
+../Core/Inc/lcd_1602.h:17:13: warning: 'lcd_send' declared 'static' but never defined [-Wunused-function]
+ static void lcd_send(int8_t rs,uint8_t data);
+             ^~~~~~~~
+arm-none-eabi-gcc -o "temp_humidity.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Maroine Trabelsi\Desktop\Sterowniki\temp_humidity\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="temp_humidity.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: temp_humidity.elf
+ 
+arm-none-eabi-objdump -h -S  temp_humidity.elf  > "temp_humidity.list"
+arm-none-eabi-objcopy  -O binary  temp_humidity.elf  "temp_humidity.bin"
+arm-none-eabi-size   temp_humidity.elf 
+   text	   data	    bss	    dec	    hex	filename
+  44196	    484	   1956	  46636	   b62c	temp_humidity.elf
+Finished building: default.size.stdout
+ 
+Finished building: temp_humidity.bin
+ 
+Finished building: temp_humidity.list
+ 
+20:20:09 **** Incremental Build of configuration Debug for project temp_humidity ****
+make -j4 all 
+arm-none-eabi-size   temp_humidity.elf 
+   text	   data	    bss	    dec	    hex	filename
+  44196	    484	   1956	  46636	   b62c	temp_humidity.elf
+Finished building: default.size.stdout
+ 
+20:20:23 **** Incremental Build of configuration Debug for project temp_humidity ****
+make -j4 all 
+arm-none-eabi-size   temp_humidity.elf 
+   text	   data	    bss	    dec	    hex	filename
+  44196	    484	   1956	  46636	   b62c	temp_humidity.elf
+Finished building: default.size.stdout
+ 
+20:20:29 **** Incremental Build of configuration Debug for project temp_humidity ****
+make -j4 all 
+arm-none-eabi-size   temp_humidity.elf 
+   text	   data	    bss	    dec	    hex	filename
+  44196	    484	   1956	  46636	   b62c	temp_humidity.elf
+Finished building: default.size.stdout
+ 
+20:21:09 **** Incremental Build of configuration Debug for project temp_humidity ****
+make -j4 all 
+arm-none-eabi-size   temp_humidity.elf 
+   text	   data	    bss	    dec	    hex	filename
+  44196	    484	   1956	  46636	   b62c	temp_humidity.elf
+Finished building: default.size.stdout
+ 
+20:24:15 **** Incremental Build of configuration Debug for project temp_humidity ****
+make -j4 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32L476xx -DDEBUG -c -I../Drivers/CMSIS/Include -I../Core/Inc -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+In file included from ../Core/Src/main.c:33:0:
+../Core/Inc/lcd_1602.h:16:13: warning: 'lcd_send_4bit' declared 'static' but never defined [-Wunused-function]
+ static void lcd_send_4bit(uint8_t data);
+             ^~~~~~~~~~~~~
+../Core/Inc/lcd_1602.h:17:13: warning: 'lcd_send' declared 'static' but never defined [-Wunused-function]
+ static void lcd_send(int8_t rs,uint8_t data);
+             ^~~~~~~~
+arm-none-eabi-gcc -o "temp_humidity.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\Maroine Trabelsi\Desktop\Sterowniki\temp_humidity\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="temp_humidity.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: temp_humidity.elf
+ 
+arm-none-eabi-objdump -h -S  temp_humidity.elf  > "temp_humidity.list"
+arm-none-eabi-objcopy  -O binary  temp_humidity.elf  "temp_humidity.bin"
+arm-none-eabi-size   temp_humidity.elf 
+   text	   data	    bss	    dec	    hex	filename
+  44212	    484	   1956	  46652	   b63c	temp_humidity.elf
+Finished building: default.size.stdout
+ 
+Finished building: temp_humidity.bin
+ 
+Finished building: temp_humidity.list
+ 
+20:24:24 **** Incremental Build of configuration Debug for project temp_humidity ****
+make -j4 all 
+arm-none-eabi-size   temp_humidity.elf 
+   text	   data	    bss	    dec	    hex	filename
+  44212	    484	   1956	  46652	   b63c	temp_humidity.elf
+Finished building: default.size.stdout
+ 

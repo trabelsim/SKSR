@@ -27,7 +27,9 @@
 #include "stm32l4xx_hal_rcc.h"
 #include <string.h> // for sprintf
 #include <stdio.h>
+// Library for BMP280
 #include "bmp280.h"
+// Library for LCD Screen HD44780
 #include "lcd_1602.h"
 #include "stdint.h"
 /* USER CODE END Includes */
@@ -47,10 +49,13 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+// Analog TypeDef variable
 ADC_HandleTypeDef hadc1;
 
+// I2C Typedef variable
 I2C_HandleTypeDef hi2c1;
 
+// UART Typedef variable
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
@@ -58,6 +63,7 @@ UART_HandleTypeDef huart2;
 // Declare variable for BMP280 usage
 BMP280_HandleTypedef bmp280;
 
+// float variable to store taken values from sensor
 float pressure, temperature, humidity;
 
 /* USER CODE END PV */
@@ -69,11 +75,21 @@ static void MX_USART2_UART_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_I2C1_Init(void);
 /* USER CODE BEGIN PFP */
-
+uint16_t set_humidity_value(uint16_t humidity_value);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+uint16_t set_humidity_value(uint16_t humidity_value){
+	uint16_t result, in_min, in_max, out_min, out_max;
+	in_min = 5000;
+	in_max = 1000;
+	out_min = 0;
+	out_max = 100;
+	result = (humidity_value - in_min ) * (out_max - out_min) / (in_max - in_min) + out_min;
+	return result;
+}
 
 /* USER CODE END 0 */
 
@@ -84,10 +100,13 @@ static void MX_I2C1_Init(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
+
 	// humidity line stores the actual value taken from ADC
 	uint16_t humidity_line;
+
 	// humidity msg stores the message to send to UART2
 	char humidity_msg[16];
+
 	// humidity format used to format in a proper way the output
 	// Output should be from 0% to 100%. Similar to map function for arduino.
 	uint16_t humidity_format;
@@ -98,6 +117,8 @@ int main(void)
 	// char box for LCD
 	char lcd_message[16];
 	char lcd_message2[16];
+
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -125,6 +146,7 @@ int main(void)
   // Initialization of the LCD Screen
   lcd_init();
 
+
   // Start bmp initialization with default parameters provided by library
   bmp280_init_default_params(&bmp280.params);
   // Get I2C address of BMP280 slave
@@ -138,6 +160,8 @@ int main(void)
    *
    *
    */
+  // If the bmp will not be initialized with all parameters correctly,
+  // then initilization will be failed and the message will be provided via UART to terminal
   while(!bmp280_init(&bmp280, &bmp280.params)){
 	  sprintf( data_i2c, "BMP280 initialization failed\r\n" );
 	  HAL_UART_Transmit(&huart2, (uint8_t*)data_i2c , strlen(data_i2c), HAL_MAX_DELAY);
@@ -146,6 +170,7 @@ int main(void)
 
   // Check if I2C has been found
   // 0XED is the address for initialize the communication - start
+  // If the device has been found, then toggle the led and send the message via UART to terminal
   if ( (HAL_I2C_IsDeviceReady(&hi2c1,0xED, 2,10)) == HAL_OK){
     	HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_5);
     	sprintf( data_i2c, "BMP280 initialized correctly\r\n" );
@@ -174,6 +199,8 @@ int main(void)
 	  // Controller start to poll the ADC device
 	  HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY);
 
+	  // bmp280 function get values for temperature, pressure and humidity in case it is a bme280
+	  // If it won't be able to get appropriate information then message "Reading failed will be transmitted".
 	  while (!bmp280_read_float(&bmp280, &temperature, &pressure, &humidity)) {
 	  	  	sprintf(data_i2c,"BMP280 reading failed\n");
 	  	  	HAL_UART_Transmit(&huart2, (uint8_t *)data_i2c, strlen(data_i2c), HAL_MAX_DELAY);
@@ -183,9 +210,12 @@ int main(void)
 
 	  // Get the value of ADC and store it in humidity line variable
 	  humidity_line = HAL_ADC_GetValue(&hadc1);
-	  sprintf(humidity_msg,"Humidity : %hu\r\n",humidity_line);
+	  humidity_format = set_humidity_value(humidity_line);
+	  sprintf(humidity_msg,"Humidity : %hu%%\r\n",humidity_format);
 	  HAL_UART_Transmit(&huart2, (uint8_t*)humidity_msg, strlen(humidity_msg), HAL_MAX_DELAY);
-	  sprintf(lcd_message,"Hum : %hu",humidity_line);
+	  humidity_format = set_humidity_value(humidity_line);
+	  // Send data via LCD
+	  sprintf(lcd_message,"Hum : %hu%%",humidity_format);
 	  lcd_gotoxy(0, 0);
 	  lcd_puts(lcd_message);
 	  HAL_Delay(100);
@@ -194,6 +224,8 @@ int main(void)
 
 	  sprintf(data_i2c,"Pressure: %.2f Pa, Temperature: %.2f C\r\n",pressure, temperature);
 	  HAL_UART_Transmit(&huart2, (uint8_t *)data_i2c, strlen(data_i2c), HAL_MAX_DELAY);
+
+	  // Send data via LCD
 	  sprintf(lcd_message2,"Temp: %.2f C", temperature);
 	  lcd_gotoxy(0, 1);
 	  lcd_puts(lcd_message2);
