@@ -28,6 +28,8 @@
 #include <string.h> // for sprintf
 #include <stdio.h>
 #include "bmp280.h"
+#include "lcd_1602.h"
+#include "stdint.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -92,6 +94,10 @@ int main(void)
 
 	// i2c - bmp280 message box
 	char data_i2c[50];
+
+	// char box for LCD
+	char lcd_message[16];
+	char lcd_message2[16];
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -116,7 +122,8 @@ int main(void)
   MX_ADC1_Init();
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
-
+  // Initialization of the LCD Screen
+  lcd_init();
 
   // Start bmp initialization with default parameters provided by library
   bmp280_init_default_params(&bmp280.params);
@@ -176,15 +183,21 @@ int main(void)
 
 	  // Get the value of ADC and store it in humidity line variable
 	  humidity_line = HAL_ADC_GetValue(&hadc1);
-	  humidity_format = ((4000 - humidity_line) / 100);
 	  sprintf(humidity_msg,"Humidity : %hu\r\n",humidity_line);
-
-	  // Transmit the humidity_msg through &huart2
 	  HAL_UART_Transmit(&huart2, (uint8_t*)humidity_msg, strlen(humidity_msg), HAL_MAX_DELAY);
+	  sprintf(lcd_message,"Hum : %hu",humidity_line);
+	  lcd_gotoxy(0, 0);
+	  lcd_puts(lcd_message);
+	  HAL_Delay(100);
+	  // Transmit the humidity_msg through &huart2
 
 
 	  sprintf(data_i2c,"Pressure: %.2f Pa, Temperature: %.2f C\r\n",pressure, temperature);
 	  HAL_UART_Transmit(&huart2, (uint8_t *)data_i2c, strlen(data_i2c), HAL_MAX_DELAY);
+	  sprintf(lcd_message2,"Temp: %.2f C", temperature);
+	  lcd_gotoxy(0, 1);
+	  lcd_puts(lcd_message2);
+
 
 	  HAL_Delay(100);
 
@@ -423,6 +436,10 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
 
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, RS_Pin|RW_Pin|EN_Pin|D4_Pin 
+                          |D5_Pin|D6_Pin|D7_Pin, GPIO_PIN_RESET);
+
   /*Configure GPIO pin : B1_Pin */
   GPIO_InitStruct.Pin = B1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
@@ -435,6 +452,15 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LD2_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : RS_Pin RW_Pin EN_Pin D4_Pin 
+                           D5_Pin D6_Pin D7_Pin */
+  GPIO_InitStruct.Pin = RS_Pin|RW_Pin|EN_Pin|D4_Pin 
+                          |D5_Pin|D6_Pin|D7_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
 }
 
