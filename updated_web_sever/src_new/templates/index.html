@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SKSR</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="main.css">
+
+	  <!-- CSS only -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  </head>
+<body>
+	<header  class="page-header header container-fluid">
+		<div class="overlay"></div>
+		<div class="description">
+			<h1 style="text-align:center;margin-bottom:100px;">System Kontroli Stanu Roślin</h1>
+			<div class="container features">
+				<div class="row">	
+					<div class="col-sm-4">
+						{% load static %}
+						<img src="{% static 'images/Termometr.png' %}" class="img-fluid">
+						<h2>Temperatura: {{title}} &#176 C</h2>
+					</div>
+					<div  class="col-sm-4">
+						<img src="{% static 'images/Kropelki.png' %}" class="img-fluid">
+						<h2>Wilgotność:  {{title2}} % </h2>
+					</div>
+					<div class="col-sm-4">
+						<img src="{% static 'images/cisnienie.png' %}" class="img-fluid">
+						<h2>Ciśnienie: {{title3}} hPa</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+<script src="{% static 'jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'main.js' %}"></script>
+</body>
+</html>
